@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: none;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: black;
+    display: flex;
+}
+
+#game {
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+#gameCanvas {
+    border: 2px solid white;
+    width: 90%;
+    object-fit: contain;
+}
+
+#controls-box {
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+#controller {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    width: min-content;
+    height: min-content;
+    transform: rotate(45deg);
+    gap: 5px;
+}
+
+.controller__box {
+    width: 25rem;
+    height: 25rem;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.controller__box > * {
+    pointer-events: none;
+}
+
+.controller__box__pie {
+    width: 50rem;
+    height: 50rem;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    border-radius: 50%;
+    background-color: #aaa;
+}
+
+#top-icon-box {
+    transform: rotate(-45deg);
+}
+
+#right-icon-box {
+    transform: rotate(-135deg);
+}
+
+#left-icon-box {
+    transform: rotate(45deg);
+}
+
+#down-icon-box {
+    transform: rotate(135deg);
+}
+
+.controller__box:nth-child(2) {
+    transform: rotate(90deg);
+}
+
+.controller__box:nth-child(3) {
+    transform: rotate(270deg);
+}
+
+.controller__box:nth-child(4) {
+    transform: rotate(180deg);
+}
+
+.control-icon-box {
+    width: 10.5rem;
+    height: 10.5rem;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-icon-box:active {
+    background-color: red;
+}
+
+.rectangle {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid gray;
+    background-color: green;
+    border-radius: 10px;
+}
+
+#food {
+    background-color: red;
+}
+
+.control-icon {
+    pointer-events: none;
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        justify-content: center;
+    }
+    body > * {
+        width: 50%;
+        height: 100%;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    body {
+        flex-direction: column;
+    }
+    body > * {
+        height: 50%;
+        width: 100%;
+    }
+    #game {
+        border-bottom: 2px solid white;
+    }
+    #controls-box {
+        display: flex;
+    }
+}
