@@ -1,3 +1,5 @@
+import { bodyImage, foodImage, headImage, tailImage } from "./snakeParts.js";
+
 const canvas = document.getElementById("gameCanvas");
 const context = canvas.getContext("2d");
 
@@ -10,13 +12,11 @@ const Direction = {
     RIGHT: "RIGHT",
 };
 
-let bodyLocations = []
-
-const boxSize = 10;
-let framesPerMove = 7;
-let snake = [{ x: 0, y: 0, moveFrames: 0 }];
+const boxSize = 20;
+let framesPerMove = 17;
+let snake = [{ x: 0, y: 0, moveFrames: 0}];
 let food = { x: 0, y: 0 };
-let currentDirection = Direction.RIGHT;
+let currentDirection = null;
 
 function generateRandomPosition() {
     return Math.floor(Math.random() * canvas.width / boxSize) * boxSize;
@@ -29,14 +29,26 @@ function createFood() {
 
 function drawSnake() {
     context.fillStyle = "#2ecc71";
-    snake.forEach(segment => {
-        context.fillRect(segment.x, segment.y, boxSize, boxSize);
+
+    snake.forEach((segment, index) => {
+        
+        let image = bodyImage
+
+        if (index === 0) {
+            image = headImage
+        } 
+        
+        if (snake.length > 1 && index === snake.length - 1) {
+            image = tailImage
+        }
+
+        context.drawImage(image, segment.x, segment.y, boxSize * 2, boxSize);
     });
+    return
 }
 
 function drawFood() {
-    context.fillStyle = "#e74c3c";
-    context.fillRect(food.x, food.y, boxSize, boxSize);
+    context.drawImage(foodImage, food.x, food.y, boxSize, boxSize);
 }
 
 function clearCanvas() {
@@ -115,7 +127,7 @@ function startGame() {
     requestAnimationFrame(gameLoop);
 }
 
-gameStarted = false
+let gameStarted = false
 
 document.addEventListener("keydown", (event) => {
     switch (event.key) {
