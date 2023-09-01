@@ -12,8 +12,8 @@ const Direction = {
     RIGHT: "RIGHT",
 };
 
-const boxSize = 20;
-let framesPerMove = 17;
+const boxSize = 10;
+let framesPerMove = 7;
 let snake = [{ x: 0, y: 0, moveFrames: 0}];
 let food = { x: 0, y: 0 };
 let currentDirection = null;
@@ -28,7 +28,6 @@ function createFood() {
 }
 
 function drawSnake() {
-    context.fillStyle = "#2ecc71";
 
     snake.forEach((segment, index) => {
         
@@ -42,7 +41,7 @@ function drawSnake() {
             image = tailImage
         }
 
-        context.drawImage(image, segment.x, segment.y, boxSize * 2, boxSize);
+        context.drawImage(image, segment.x, segment.y, boxSize, boxSize);
     });
     return
 }
